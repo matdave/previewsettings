@@ -1,0 +1,31 @@
+{
+  "name": "PreviewSettings",
+  "lowCaseName": "previewsettings",
+  "description": "Add custom settings for logged in manager users.",
+  "author": "matdave",
+  "version": "1.0.0-beta1",
+  "package": {
+    "elements": {
+      "plugins": [
+        {
+          "name": "PreviewSettings",
+          "file": "PreviewSettings.php",
+          "events": [
+            "OnMODXInit"
+          ]
+        }
+      ]
+    },
+    "systemSettings": [
+      {
+        "key": "preview_groups",
+        "value": "Administrator"
+      },
+      {
+        "key": "manager_only",
+        "value": 1,
+        "type": "combo-boolean"
+      }
+    ]
+  }
+}
