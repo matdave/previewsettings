@@ -29,6 +29,7 @@ class PreviewSettings
 
         $this->modx->addPackage('previewsettings', $this->getOption('modelPath'));
         $this->modx->lexicon->load('previewsettings:default');
+        $this->autoload();
     }
 
     public function getOption($key, $options = array(), $default = null)
@@ -44,6 +45,11 @@ class PreviewSettings
             }
         }
         return $option;
+    }
+
+    protected function autoload()
+    {
+        require_once $this->getOption('modelPath') . 'vendor/autoload.php';
     }
 
     public function getOptions()
