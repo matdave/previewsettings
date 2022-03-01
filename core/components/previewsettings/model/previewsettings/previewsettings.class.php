@@ -38,8 +38,8 @@ class PreviewSettings
         if (!empty($key) && is_string($key)) {
             if ($options != null && array_key_exists($key, $options)) {
                 $option = $options[$key];
-            } elseif (array_key_exists($key, $this->config)) {
-                $option = $this->config[$key];
+            } elseif (array_key_exists($key, $this->options)) {
+                $option = $this->options[$key];
             } elseif (array_key_exists("{$this->namespace}.{$key}", $this->modx->config)) {
                 $option = $this->modx->getOption("{$this->namespace}.{$key}");
             }
@@ -70,8 +70,8 @@ class PreviewSettings
         $keys = array_filter($options, function($key) {
             return strpos($key, 'ps.') === 0;
         }, ARRAY_FILTER_USE_KEY);
-        foreach ($keys as $key) {
-            $parsed[str_replace('ps.','', $key)] = $options[$key];
+        foreach ($keys as $key => $value) {
+            $parsed[str_replace('ps.','', $key)] = $value;
         }
         return $parsed;
     }
