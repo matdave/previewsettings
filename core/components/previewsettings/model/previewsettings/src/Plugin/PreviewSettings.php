@@ -6,7 +6,7 @@ class PreviewSettings extends Plugin
 {
     public function run()
     {
-        if ($this->modx->context->key === 'mgr' || !$this->modx->user) {
+        if (!$this->modx->user) {
             return;
         }
 
