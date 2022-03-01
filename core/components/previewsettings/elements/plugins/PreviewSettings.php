@@ -7,4 +7,4 @@ $previewSettings = $modx->getService('previewsettings', 'PreviewSettings', $modx
 if (!($previewSettings instanceof \PreviewSettings)) return '';
 
 $plugin = new \PreviewSettings\Plugin\PreviewSettings($previewSettings, $scriptProperties);
-$plugin->run();
+$plugin->run($modx->event->name);

@@ -4,7 +4,7 @@ namespace PreviewSettings\Plugin;
 
 class PreviewSettings extends Plugin
 {
-    public function run()
+    public function run(string $event)
     {
         if (!$this->modx->user) {
             return;

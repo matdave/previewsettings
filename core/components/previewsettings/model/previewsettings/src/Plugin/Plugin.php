@@ -20,5 +20,5 @@ abstract class Plugin
         $this->scriptProperties = $scriptProperties;
     }
 
-    abstract public function run();
+    abstract public function run(string $event);
 }
