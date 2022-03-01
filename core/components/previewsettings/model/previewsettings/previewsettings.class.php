@@ -55,6 +55,8 @@ class PreviewSettings
     public function getOptions()
     {
         $options = $this->options;
+        $options = array_merge($this->modx->config, $options);
+
         if(!empty($this->modx->user)) {
             $options = array_merge($options, $this->modx->user->getSettings());
         }
@@ -76,12 +78,15 @@ class PreviewSettings
         return $parsed;
     }
 
-    public function setOptions(array $options): void
+    public function setOptions(array $options, $resource): void
     {
         foreach($options as $key => $value) {
             $this->modx->setOption($key,$value);
             if($this->modx->context) {
                 $this->modx->context->config[$key] = $value;
+            }
+            if($resource) {
+                $resource->context->config[$key] = $value;
             }
         }
     }

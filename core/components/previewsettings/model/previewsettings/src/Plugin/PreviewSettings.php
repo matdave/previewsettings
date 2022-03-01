@@ -4,7 +4,7 @@ namespace PreviewSettings\Plugin;
 
 class PreviewSettings extends Plugin
 {
-    public function run(string $event)
+    public function run()
     {
         if (!$this->modx->user) {
             return;
@@ -32,7 +32,7 @@ class PreviewSettings extends Plugin
 
         $options = $this->previewSettings->getOptions();
         if(!empty($options)) {
-            $this->previewSettings->setOptions($options);
+            $this->previewSettings->setOptions($options, $this->scriptProperties['resource']);
         }
     }
 }
