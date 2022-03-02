@@ -30,9 +30,16 @@ class PreviewSettings extends Plugin
             return;
         }
 
+        $resource = $this->scriptProperties['resource'];
+        if($resource) {
+            if($this->modx->context->key !== $resource->context_key) {
+                $this->modx->switchContext($resource->context_key);
+            }
+        }
+
         $options = $this->previewSettings->getOptions();
         if(!empty($options)) {
-            $this->previewSettings->setOptions($options, $this->scriptProperties['resource']);
+            $this->previewSettings->setOptions($options);
         }
     }
 }

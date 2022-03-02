@@ -80,11 +80,6 @@ class PreviewSettings
 
     public function setOptions(array $options, $resource): void
     {
-        if($resource) {
-            if($this->modx->context->key !== $resource->context_key) {
-                $this->modx->switchContext($resource->context_key);
-            }
-        }
         foreach($options as $key => $value) {
             $this->modx->setOption($key,$value);
             if($this->modx->context) {
