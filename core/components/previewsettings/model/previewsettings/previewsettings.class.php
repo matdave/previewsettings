@@ -78,7 +78,7 @@ class PreviewSettings
         return $parsed;
     }
 
-    public function setOptions(array $options, $resource): void
+    public function setOptions(array $options): void
     {
         foreach($options as $key => $value) {
             $this->modx->setOption($key,$value);
