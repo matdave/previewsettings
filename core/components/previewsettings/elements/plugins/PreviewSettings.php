@@ -7,4 +7,14 @@ $previewSettings = $modx->getService('previewsettings', 'PreviewSettings', $modx
 if (!($previewSettings instanceof \PreviewSettings)) return '';
 
 $plugin = new \PreviewSettings\Plugin\PreviewSettings($previewSettings, $scriptProperties);
-$plugin->run();
+switch($modx->event->name) {
+    case 'OnLoadWebDocument':
+        if($plugin->canRun() && $modx->resource){
+            $modx->resource->set('cacheable', 0);
+        }
+        break;
+    case 'OnMODXInit':
+        $plugin->run();
+        break;
+}
+return;
