@@ -29,14 +29,22 @@ class PreviewSettings extends Plugin
         {
             return;
         }
-
-        $contexts = $this->modx->getCollection('modContext', ['key:!=' => 'mgr']);
-        foreach($contexts as $context) {
-            $this->modx->switchContext($context);
-            $options = $this->previewSettings->getOptions();
-            if(!empty($options)) {
-                $this->previewSettings->setOptions($options);
+        if($this->modx->context && $this->modx->context->key === 'mgr') {
+            $contexts = $this->modx->getCollection('modContext', ['key:!=' => 'mgr']);
+            foreach($contexts as $context) {
+                $this->modx->switchContext($context->key);
+                $this->setSettings();
             }
+            $this->modx->switchContext('mgr');
+        }
+        $this->setSettings();
+    }
+
+    private function setSettings(): void
+    {
+        $options = $this->previewSettings->getOptions();
+        if(!empty($options)) {
+            $this->previewSettings->setOptions($options);
         }
     }
 }
